@@ -1,0 +1,7 @@
+/* hide all pages except the current page */
+.page {
+	display: none;
+}
+.page.current {
+	display: block;
+}

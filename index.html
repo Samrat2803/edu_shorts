@@ -1,64 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
-    <title>Page Viewer</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-      }
-      
-      #page-content {
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        padding: 10px;
-      }
-      
-      button {
-        font-size: 20px;
-        padding: 10px;
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        margin: 10px;
-        cursor: pointer;
-      }
-      
-      button:hover {
-        background-color: #3E8E41;
-      }
-    </style>
+    <title>Index Page</title>
   </head>
   <body>
-    <div id="page-content"></div>
-    <div>
-      <button onclick="previous()">Previous</button>
-      <button onclick="next()">Next</button>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <h1>History Shorts</h1>
+    <iframe id="content" src="pages/page_0.html" width="100%" height="500px"></iframe>
+    <button onclick="loadPrevious()">Previous</button>
+    <button onclick="loadNext()">Next</button>
     <script>
+      var pages = ["pages/page_0.html","pages/page_1.html", "pages/page_2.html", "pages/page_3.html", "pages/page_4.html"];
       var currentPage = 0;
-      var totalPages = 13;
-
-        function loadPage(pageNumber) {
-        if (pageNumber < 0 || pageNumber > totalPages) {
-            return;
+      function loadNext() {
+        if (currentPage < pages.length - 1) {
+          currentPage++;
+        } else {
+          currentPage = 0;
         }
-        $("#page-content").load("pages/chunk_" + pageNumber + ".html");
-        currentPage = pageNumber;
+        document.getElementById("content").src = pages[currentPage];
+      }
+      function loadPrevious() {
+        if (currentPage > 0) {
+          currentPage--;
+        } else {
+          currentPage = pages.length - 1;
         }
-
-        function next() {
-        loadPage(currentPage + 1);
-        }
-
-        function previous() {
-        loadPage(currentPage - 1);
-        }
-
-        loadPage(currentPage);
-
+        document.getElementById("content").src = pages[currentPage];
+      }
+    </script>
+  </body>
+</html>
