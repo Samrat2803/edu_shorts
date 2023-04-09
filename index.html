@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Page Viewer</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      
+      #page-content {
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        padding: 10px;
+      }
+      
+      button {
+        font-size: 20px;
+        padding: 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        margin: 10px;
+        cursor: pointer;
+      }
+      
+      button:hover {
+        background-color: #3E8E41;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="page-content"></div>
+    <div>
+      <button onclick="previous()">Previous</button>
+      <button onclick="next()">Next</button>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      var currentPage = 0;
+      var totalPages = 13;
+
+        function loadPage(pageNumber) {
+        if (pageNumber < 0 || pageNumber > totalPages) {
+            return;
+        }
+        $("#page-content").load("pages/chunk_" + pageNumber + ".html");
+        currentPage = pageNumber;
+        }
+
+        function next() {
+        loadPage(currentPage + 1);
+        }
+
+        function previous() {
+        loadPage(currentPage - 1);
+        }
+
+        loadPage(currentPage);
+
