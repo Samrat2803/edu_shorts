@@ -1,83 +1,105 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive HTML Example</title>
+<head>
+    <title>History Shorts</title>
     <style>
-      /* Define styles for the header */
-      header {
-        background-color: #333;
-        color: #fff;
-        padding: 10px;
-        text-align: center;
-      }
-      
-      /* Define styles for the logo */
-      header img {
-        max-width: 100%;
-        height: auto;
-      }
-
-      /* Define styles for the container */
-      .container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-        box-sizing: border-box;
-        border: 2px solid #ccc;
-      }
-
-      /* Define styles for the image */
-      .container img {
-        max-width: 100%;
-        height: auto;
-        display: block;
-        margin: 0 auto;
-        border: 2px solid #333;
-      }
-
-      /* Define styles for the title */
-      .container h1 {
-        text-align: center;
-        margin-top: 20px;
-        margin-bottom: 10px;
-        border-bottom: 2px solid #333;
-        padding-bottom: 5px;
-      }
-
-      /* Define styles for the text body */
-      .container p {
-        text-align: justify;
-        margin-top: 0;
-        border-top: 2px solid #333;
-        padding-top: 10px;
-      }
-      
-      /* Add responsive styles for smaller screens */
-      @media screen and (max-width: 600px) {
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            text-align: justify;
+        }
         .container {
-          padding: 10px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 2px solid #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
-        
-        .container h1 {
-          font-size: 28px;
+        h1 {
+            font-size: 30px;
+            margin-top: 0;
+            margin-bottom: 20px;
         }
-        
-        .container p {
-          font-size: 16px;
+        p {
+            font-size: 18px;
         }
-      }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .buttons-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background-color: #333;
+            color: #fff;
+            border-radius: 5px;
+        }
     </style>
-  </head>
-  <body>
-    <header>
-      <img src="logo.png" alt="Logo">
-    </header>
+</head>
+<body>
     <div class="container">
-      <img src="example-image.jpg" alt="Example Image">
-      <h1>Title of the Writeup</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor lectus euismod nulla luctus, vel feugiat mi imperdiet. Nullam ullamcorper consectetur risus, et suscipit arcu laoreet vel. Duis interdum sollicitudin elit, eu eleifend risus lacinia a. Proin iaculis felis nunc, at interdum mauris faucibus vel. Nullam sed elit vitae elit dapibus gravida eget sed sapien. Nam quis ex nec ipsum bibendum efficitur. Sed dignissim ex nec magna tempor pretium. Phasellus vitae nulla vel libero tincidunt congue.</p>
+        <img src="" alt="Image">
+        <h1></h1>
+        <p></p>
     </div>
-  </body>
+    <div class="buttons-container">
+        <button id="prev-btn">Previous</button>
+        <button id="next-btn">Next</button>
+    </div>
+
+    <script>
+        fetch("data.json")
+            .then(response => response.json())
+            .then(data => {
+                const img = document.querySelector("img");
+                const title = document.querySelector("h1");
+                const summary = document.querySelector("p");
+
+                let index = 0;
+                const lastIndex = Object.keys(data.title).length - 1;
+
+                img.src = data.image_path[index];
+                title.innerText = data.title[index];
+                summary.innerText = data.summary[index];
+
+                document.querySelector("#prev-btn").addEventListener("click", () => {
+                    if (index === 0) {
+                        index = lastIndex;
+                    } else {
+                        index--;
+                    }
+                    img.src = data.image_path[index];
+                    title.innerText = data.title[index];
+                    summary.innerText = data.summary[index];
+                });
+
+                document.querySelector("#next-btn").addEventListener("click", () => {
+                    if (index === lastIndex) {
+                        index = 0;
+                    } else {
+                        index++;
+                    }
+                    img.src = data.image_path[index];
+                    title.innerText = data.title[index];
+                    summary.innerText = data.summary[index];
+                });
+            })
+            .catch(error => console.error(error));
+    </script>
+</body>
 </html>
