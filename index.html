@@ -12,8 +12,8 @@
         }
         .container {
             max-width: 800px;
-            margin: auto;
-            padding: 40px;
+            /* margin: auto; */
+            padding: 30px;
             border: 20px solid #000;
             display: flex;
             flex-direction: column;
@@ -22,18 +22,16 @@
             border-radius: 15px;
         }
         h1 {
-            font-size: 30px;
+            font-size: 22px;
             /* margin-top: 0; */
-            margin-bottom: 20px;
+            margin-bottom: auto;
         }
         p {
             font-size: 18px;
         }
-        /* img { */
-            /* max-width: 100%; */
-            /* height: auto; */
-            /* margin-bottom: auto; */
-        /* } */
+        img {
+            max-height: 256px;
+        }
         .buttons-container {
             position: fixed;
             bottom: 0;
@@ -78,8 +76,8 @@
 </head>
 <body>
     <div class="navbar-container">
-        <navbar id="prev-nav">Back</navbar>
-        <navbar id="next-nav">Next</navbar>
+        <navbar id="prev-nav"></navbar>
+        <navbar id="next-nav"></navbar>
     </div>
     <div class="container">
         <img src="" alt="Image">
