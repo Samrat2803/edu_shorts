@@ -102,9 +102,11 @@
             border-radius: 15px;
             height: 80vh;
             width: 25vw;
+            z-index: 1;
         }
     </style>
 </head>
+<body>
 <div class="header-container">
     <div class="logo-container">
         <img src="icons/logo.png" alt="Logo" class="logo-image">
@@ -116,8 +118,8 @@
 </div>
       
 <div class="navbar-container">
-    <nav id="prev-nav"></nav>
-    <nav id="next-nav"></nav>
+    <div id="prev-nav" class="navbar"></div>
+<div id="next-nav" class="navbar"></div>
 </div>
 
 <div class="container">
