@@ -1,106 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="shortcut icon" type="image/x-icon" href="icons/favicon/favicon.ico">
-	<link rel="icon" type="image/png" href="icons/favicon/favicon-32x32.png">
-	<title>History Learning App</title>
-	<style>
-		.header-container {
-            max-height: 20;
-			display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            background-color: white;
-            padding-left: 40px;
-            padding-right: 40px;
-            padding-top: 20px;
-            padding-bottom: auto;
-            
-        }
-        .logo-container {
-            width: auto; /* set logo width */
-            height: auto;
-        }
-        .logo-image {
-            width: 100px;
-            height: 100px;
-            /* border: 1px solid #ccc; */
-            /* other styles here */
-        }
-
-        .title {
-            text-align: center;
-            width: 80%; /* increase the width to 80% */
-            margin: auto;
-            font-size: 50px;
-            text-emphasis: bold;
-            font-family: Arial, sans-serif;
-        }
-		body {
-			font-family: Arial, sans-serif;
-			margin: 0;
-			padding: 0;
-			border: 10px solid #5390A6;
-    		box-sizing: border-box;
-			height: 100vh;
-		}
-		header {
-			background-color: #4285F4;
-			color: white;
-			padding: 20px;
-			text-align: center;
-		}
-		h1 {
-			font-size: 3rem;
-			margin: 0;
-		}
-		p {
-			font-size: 1.2rem;
-			line-height: 1.5;
-			margin: 20px;
-			text-justify: auto;
-		}
-		.container {
-			max-width: 1200px;
-			margin: auto;
-			padding: 20px;
-		}
-		button {
-			background-color: #5390A6;
-			color: white;
-			font-size: 1.2rem;
-			padding: 20px;
-			border: none;
-			border-radius: 5px;
-			cursor: pointer;
-			bottom: 20px;
-			right: 20px;
-			margin: 20px;
-		}
-		button:hover {
-			background-color: #3367D6;
-		}
-	</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMUR.AI</title>
+  <link rel="shortcut icon" type="image/x-icon" href="icons/favicon/favicon.ico">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-	<div class="header-container">
-		<div class="logo-container">
-			<img src="icons/logo.png" alt="Logo" class="logo-image">
-		</div>
-		<div class="title"></div>
-		<div class="logo-container">
-			<img src="icons/user_icon.png" alt="Logo" class="logo-image">
-		</div>
-	</div>
-	<!-- <header>
-		<h1>SMUR.AI</h1>
-	</header> -->
-	<div class="container">
-		<p>Welcome to the History Learning App! Our app helps you learn history by breaking down the syllabus into small, manageable chunks. Whether you're studying for an exam or just interested in history, our app has something for you. </p>
-		 <button onclick="location.href='chapter_3.html'">Read Sample Chapter For Free >>></button>
-	</div>
+  <div class="border-wrapper">
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">SMUR.AI</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="chapter_3.html">Sample Chapter</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <img src="icons/logo.png" alt="History Learning App Logo" class="img-fluid mt-4 mb-4">
+            <p class="lead">Welcome to the ultimate learning app. Master history with ease by breaking down the syllabus into small chunks.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <button type="button" class="btn btn-lg mt-5 custom-btn" onclick="window.location.href='chapter_3.html'">Read Sample Chapter</button>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-</html> 
+</html>

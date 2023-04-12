@@ -1,0 +1,36 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+header {
+  margin-bottom: 2rem;
+}
+
+main {
+  min-height: calc(100vh - 250px);
+}
+
+footer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.border-wrapper {
+  border: 10px solid #5390A6;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.custom-btn {
+  background-color: #5390A6;
+  color: white;
+  border: 1px solid #5390A6;
+}
+
+.custom-btn:hover {
+  background-color: #26414a;
+  border-color: #26414a;
+}
