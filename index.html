@@ -12,7 +12,7 @@
         }
         .container {
             max-width: 800px;
-            margin: 0 auto;
+            margin: auto;
             padding: 40px;
             border: 20px solid #000;
             display: flex;
@@ -23,18 +23,20 @@
         }
         h1 {
             font-size: 30px;
-            margin-top: 0;
+            /* margin-top: 0; */
             margin-bottom: 20px;
         }
         p {
             font-size: 18px;
         }
-        img {
-            max-width: 200%;
-            height: auto;
-            margin-bottom: 10px;
-        }
+        /* img { */
+            /* max-width: 100%; */
+            /* height: auto; */
+            /* margin-bottom: auto; */
+        /* } */
         .buttons-container {
+            position: fixed;
+            bottom: 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -43,6 +45,8 @@
         }
         button {
             padding: 10px;
+            /* padding-top: 50px; */
+            /* padding-bottom: 50px; */
             font-size: 25px;
             cursor: pointer;
             border: 20px;
@@ -50,18 +54,42 @@
             color: #fff;
             border-radius: 15px;
         }
+        .navbar-container {
+            position: fixed;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        navbar {
+            padding: 10px;
+            padding-top: 50px;
+            padding-bottom: 50px;
+            font-size: 25px;
+            cursor: pointer;
+            border: 20px;
+            background-color:none;
+            color: white;
+            border-radius: 15px;
+            height: 80vh;
+            width: 25vw;
+        }
     </style>
 </head>
 <body>
+    <div class="navbar-container">
+        <navbar id="prev-nav">Back</navbar>
+        <navbar id="next-nav">Next</navbar>
+    </div>
     <div class="container">
         <img src="" alt="Image">
         <h1></h1>
         <p></p>
-    </div>
-    <div class="buttons-container">
-        <button id="prev-btn">Previous</button>
+    <!-- <div class="buttons-container">
+        <button id="prev-btn">Back</button>
         <button id="next-btn">Next</button>
-    </div>
+    </div> -->
+</div>
 
     <script>
         fetch("data.json")
@@ -78,7 +106,7 @@
                 title.innerText = data.title[index];
                 summary.innerText = data.summary[index];
 
-                document.querySelector("#prev-btn").addEventListener("click", () => {
+                document.querySelector("#prev-nav").addEventListener("click", () => {
                     if (index === 0) {
                         index = lastIndex;
                     } else {
@@ -89,7 +117,7 @@
                     summary.innerText = data.summary[index];
                 });
 
-                document.querySelector("#next-btn").addEventListener("click", () => {
+                document.querySelector("#next-nav").addEventListener("click", () => {
                     if (index === lastIndex) {
                         index = 0;
                     } else {
