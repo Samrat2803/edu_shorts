@@ -3,6 +3,34 @@
 <head>
     <title>History Shorts</title>
     <style>
+        .header-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
+            padding: 10px;
+        }
+
+        .logo-container {
+            width: auto; /* set logo width */
+            height: auto;
+        }
+        .logo-image {
+            width: 100px;
+            height: 100px;
+            /* border: 1px solid #ccc; */
+            /* other styles here */
+        }
+
+        .title {
+            text-align: center;
+            width: 80%; /* increase the width to 80% */
+            margin: auto;
+            font-size: 50px;
+            text-emphasis: bold;
+            font-family: Arial, sans-serif;
+        }
         body {
             margin: 0;
             padding: 0;
@@ -13,7 +41,9 @@
         .container {
             max-width: 800px;
             min-height: 80vh;
-            margin: auto;
+            margin-top: 10px;
+            margin-left: auto;
+            margin-right: auto;
             padding: 30px;
             border: 20px solid #000;
             display: flex;
@@ -30,7 +60,7 @@
         p {
             font-size: x-large;
         }
-        img {
+        .content-image {
             min-height: 512px;
         }
         .buttons-container {
@@ -60,14 +90,14 @@
             align-items: center;
             width: 100%;
         }
-        navbar {
+        .navbar {
             padding: 10px;
             padding-top: 50px;
             padding-bottom: 50px;
             font-size: 25px;
             cursor: pointer;
             border: 20px;
-            background-color:none;
+            background-color: none;
             color: white;
             border-radius: 15px;
             height: 80vh;
@@ -75,59 +105,68 @@
         }
     </style>
 </head>
-<body>
-    <div class="navbar-container">
-        <navbar id="prev-nav"></navbar>
-        <navbar id="next-nav"></navbar>
+<div class="header-container">
+    <div class="logo-container">
+        <img src="icons/logo.png" alt="Logo" class="logo-image">
     </div>
-    <div class="container">
-        <img src="" alt="Image">
-        <h1></h1>
-        <p></p>
-    <!-- <div class="buttons-container">
-        <button id="prev-btn">Back</button>
-        <button id="next-btn">Next</button>
-    </div> -->
+    <div class="title">Modern History: India</div>
+    <div class="logo-container">
+        <img src="icons/user_icon.png" alt="Logo" class="logo-image">
+    </div>
+</div>
+      
+<div class="navbar-container">
+    <nav id="prev-nav"></nav>
+    <nav id="next-nav"></nav>
 </div>
 
-    <script>
-        fetch("data.json")
-            .then(response => response.json())
-            .then(data => {
-                const img = document.querySelector("img");
-                const title = document.querySelector("h1");
-                const summary = document.querySelector("p");
+<div class="container">
+    <img src="" alt="Image" class="content-image">
+    <h1></h1>
+    <p></p>
+</div>
 
-                let index = 0;
-                const lastIndex = Object.keys(data.title).length - 1;
+<script>
+    fetch("data.json")
+        .then(response => response.json())
+        .then(data => {
+            const img = document.querySelector(".content-image");
+            const title = document.querySelector("h1");
+            const summary = document.querySelector("p");
 
+            let index = 0;
+            const lastIndex = Object.keys(data.title).length - 1;
+
+            img.src = data.image_path[index];
+            img.alt = data.title[index];
+            title.innerText = data.title[index];
+            summary.innerText = data.summary[index];
+
+            document.querySelector("#prev-nav").addEventListener("click", () => {
+                if (index === 0) {
+                    index = lastIndex;
+                } else {
+                    index--;
+                }
                 img.src = data.image_path[index];
+                img.alt = data.title[index];
                 title.innerText = data.title[index];
                 summary.innerText = data.summary[index];
+            });
 
-                document.querySelector("#prev-nav").addEventListener("click", () => {
-                    if (index === 0) {
-                        index = lastIndex;
-                    } else {
-                        index--;
-                    }
-                    img.src = data.image_path[index];
-                    title.innerText = data.title[index];
-                    summary.innerText = data.summary[index];
-                });
-
-                document.querySelector("#next-nav").addEventListener("click", () => {
-                    if (index === lastIndex) {
-                        index = 0;
-                    } else {
-                        index++;
-                    }
-                    img.src = data.image_path[index];
-                    title.innerText = data.title[index];
-                    summary.innerText = data.summary[index];
-                });
-            })
-            .catch(error => console.error(error));
-    </script>
+            document.querySelector("#next-nav").addEventListener("click", () => {
+                if (index === lastIndex) {
+                    index = 0;
+                } else {
+                    index++;
+                }
+                img.src = data.image_path[index];
+                img.alt = data.title[index];
+                title.innerText = data.title[index];
+                summary.innerText = data.summary[index];
+            });
+        })
+        .catch(error => console.error(error));
+</script>
 </body>
 </html>
