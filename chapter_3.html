@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>History Shorts</title>
+    <style>
+        .header-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
+            padding-left: 40px;
+            padding-right: 40px;
+            padding-top: 20px;
+            padding-bottom: auto;
+            
+        }
+        .logo-container {
+            width: auto; /* set logo width */
+            height: auto;
+        }
+        .logo-image {
+            width: 100px;
+            height: 100px;
+            /* border: 1px solid #ccc; */
+            /* other styles here */
+        }
+
+        .title {
+            text-align: center;
+            width: 80%; /* increase the width to 80% */
+            margin: auto;
+            font-size: 50px;
+            text-emphasis: bold;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            text-align: justify;
+        }
+        .container {
+            max-width: 800px;
+            min-height: 80vh;
+            margin-top: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 30px;
+            border: 20px solid #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 15px;
+        }
+        h1 {
+            font-size: xx-large;
+            margin-top: 50px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        p {
+            font-size: x-large;
+        }
+        .content-image {
+            min-height: 512px;
+        }
+        .buttons-container {
+            position: fixed;
+            bottom: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-top: 10px;
+        }
+        home-button {
+            padding: 10px;
+            /* padding-top: 50px; */
+            /* padding-bottom: 50px; */
+            font-size: 25px;
+            cursor: pointer;
+            border: 20px;
+            background-color: #333;
+            color: #fff;
+            border-radius: 15px;
+        }
+        .navbar-container {
+            position: fixed;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        .navbar {
+            padding: 10px;
+            padding-top: 50px;
+            padding-bottom: 50px;
+            font-size: 25px;
+            cursor: pointer;
+            border: 20px;
+            background-color: none;
+            color: white;
+            border-radius: 15px;
+            height: 80vh;
+            width: 25vw;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+<div class="header-container">
+    <div class="logo-container">
+        <a href="index.html"><img src="icons/logo.png" alt="Logo" class="logo-image"></a>
+    </div>
+    <div class="title">Modern History: India</div>
+    <div class="logo-container">
+        <img src="icons/user_icon.png" alt="Logo" class="logo-image">
+    </div>
+</div>
+      
+<div class="navbar-container">
+    <div id="prev-nav" class="navbar"></div>
+<div id="next-nav" class="navbar"></div>
+</div>
+
+<div class="container">
+    <div>
+    <img src="" alt="Image" class="content-image">
+    </div>
+    <div>
+    <h1></h1>
+    <p></p>
+    </div>
+</div>
+
+<script>
+    fetch("data.json")
+        .then(response => response.json())
+        .then(data => {
+            const img = document.querySelector(".content-image");
+            const title = document.querySelector("h1");
+            const summary = document.querySelector("p");
+
+            let index = 0;
+            const lastIndex = Object.keys(data.title).length - 1;
+
+            img.src = data.image_path[index];
+            img.alt = data.title[index];
+            title.innerText = data.title[index];
+            summary.innerText = data.summary[index];
+
+            document.querySelector("#prev-nav").addEventListener("click", () => {
+                if (index === 0) {
+                    index = lastIndex;
+                } else {
+                    index--;
+                }
+                img.src = data.image_path[index];
+                img.alt = data.title[index];
+                title.innerText = data.title[index];
+                summary.innerText = data.summary[index];
+            });
+
+            document.querySelector("#next-nav").addEventListener("click", () => {
+                if (index === lastIndex) {
+                    index = 0;
+                } else {
+                    index++;
+                }
+                img.src = data.image_path[index];
+                img.alt = data.title[index];
+                title.innerText = data.title[index];
+                summary.innerText = data.summary[index];
+            });
+        })
+        .catch(error => console.error(error));
+</script>
+</body>
+</html>

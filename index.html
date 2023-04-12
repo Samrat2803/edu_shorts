@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>History Shorts</title>
-    <style>
-        .header-container {
-            display: flex;
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>History Learning App</title>
+	<style>
+		.header-container {
+            max-height: 20;
+			display: flex;
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
@@ -34,144 +37,67 @@
             text-emphasis: bold;
             font-family: Arial, sans-serif;
         }
-        body {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-            text-align: justify;
-        }
-        .container {
-            max-width: 800px;
-            min-height: 80vh;
-            margin-top: 10px;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 30px;
-            border: 20px solid #000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            border-radius: 15px;
-        }
-        h1 {
-            font-size: xx-large;
-            /* margin-top: 0; */
-            /* margin-bottom: auto; */
-        }
-        p {
-            font-size: x-large;
-        }
-        .content-image {
-            min-height: 512px;
-        }
-        .buttons-container {
-            position: fixed;
-            bottom: 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            margin-top: 10px;
-        }
-        button {
-            padding: 10px;
-            /* padding-top: 50px; */
-            /* padding-bottom: 50px; */
-            font-size: 25px;
-            cursor: pointer;
-            border: 20px;
-            background-color: #333;
-            color: #fff;
-            border-radius: 15px;
-        }
-        .navbar-container {
-            position: fixed;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-        }
-        .navbar {
-            padding: 10px;
-            padding-top: 50px;
-            padding-bottom: 50px;
-            font-size: 25px;
-            cursor: pointer;
-            border: 20px;
-            background-color: none;
-            color: white;
-            border-radius: 15px;
-            height: 80vh;
-            width: 25vw;
-            z-index: 1;
-        }
-    </style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			border: 10px solid #5390A6;
+    		box-sizing: border-box;
+			height: 100vh;
+		}
+		header {
+			background-color: #4285F4;
+			color: white;
+			padding: 20px;
+			text-align: center;
+		}
+		h1 {
+			font-size: 3rem;
+			margin: 0;
+		}
+		p {
+			font-size: 1.2rem;
+			line-height: 1.5;
+			margin: 20px;
+		}
+		.container {
+			max-width: 1200px;
+			margin: auto;
+			padding: 20px;
+		}
+		button {
+			background-color: #5390A6;
+			color: white;
+			font-size: 1.2rem;
+			padding: 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			bottom: 20px;
+			right: 20px;
+			margin: 20px;
+		}
+		button:hover {
+			background-color: #3367D6;
+		}
+	</style>
 </head>
 <body>
-<div class="header-container">
-    <div class="logo-container">
-        <img src="icons/logo.png" alt="Logo" class="logo-image">
-    </div>
-    <div class="title">Modern History: India</div>
-    <div class="logo-container">
-        <img src="icons/user_icon.png" alt="Logo" class="logo-image">
-    </div>
-</div>
-      
-<div class="navbar-container">
-    <div id="prev-nav" class="navbar"></div>
-<div id="next-nav" class="navbar"></div>
-</div>
-
-<div class="container">
-    <img src="" alt="Image" class="content-image">
-    <h1></h1>
-    <p></p>
-</div>
-
-<script>
-    fetch("data.json")
-        .then(response => response.json())
-        .then(data => {
-            const img = document.querySelector(".content-image");
-            const title = document.querySelector("h1");
-            const summary = document.querySelector("p");
-
-            let index = 0;
-            const lastIndex = Object.keys(data.title).length - 1;
-
-            img.src = data.image_path[index];
-            img.alt = data.title[index];
-            title.innerText = data.title[index];
-            summary.innerText = data.summary[index];
-
-            document.querySelector("#prev-nav").addEventListener("click", () => {
-                if (index === 0) {
-                    index = lastIndex;
-                } else {
-                    index--;
-                }
-                img.src = data.image_path[index];
-                img.alt = data.title[index];
-                title.innerText = data.title[index];
-                summary.innerText = data.summary[index];
-            });
-
-            document.querySelector("#next-nav").addEventListener("click", () => {
-                if (index === lastIndex) {
-                    index = 0;
-                } else {
-                    index++;
-                }
-                img.src = data.image_path[index];
-                img.alt = data.title[index];
-                title.innerText = data.title[index];
-                summary.innerText = data.summary[index];
-            });
-        })
-        .catch(error => console.error(error));
-</script>
+	<div class="header-container">
+		<div class="logo-container">
+			<img src="icons/logo.png" alt="Logo" class="logo-image">
+		</div>
+		<div class="title"></div>
+		<div class="logo-container">
+			<img src="icons/user_icon.png" alt="Logo" class="logo-image">
+		</div>
+	</div>
+	<!-- <header>
+		<h1>SMUR.AI</h1>
+	</header> -->
+	<div class="container">
+		<p>Welcome to the History Learning App! Our app helps you learn history by breaking down the syllabus into small, manageable chunks. Whether you're studying for an exam or just interested in history, our app has something for you. </p>
+		 <button onclick="location.href='chapter_3.html'">Read Sample Chapter >>></button>
+	</div>
 </body>
-</html>
+</html> 
