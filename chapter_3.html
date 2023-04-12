@@ -67,7 +67,10 @@
             font-size: x-large;
         }
         .content-image {
-            min-height: 512px;
+            width: 100%;
+            height: auto;
+            margin-top: auto;
+            margin-bottom: auto;
         }
         .buttons-container {
             position: fixed;
@@ -150,6 +153,7 @@
             const lastIndex = Object.keys(data.title).length - 1;
 
             img.src = data.image_path[index];
+            console.log(data.image_path[index]);
             img.alt = data.title[index];
             title.innerText = data.title[index];
             summary.innerText = data.summary[index];
