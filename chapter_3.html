@@ -4,6 +4,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="icons/favicon/favicon.ico">
 	<link rel="icon" type="image/png" href="icons/favicon/favicon-32x32.png">
     <title>History Shorts</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
     <style>
         .header-container {
             display: flex;
@@ -113,6 +114,20 @@
             width: 25vw;
             z-index: 1;
         }
+        /* Add styles for story mode button */
+        #story-mode {
+            position: relative;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px 30px;
+            font-size: 20px;
+            background-color: #5390A6;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -140,8 +155,11 @@
     <p></p>
     </div>
 </div>
+<button id="story-mode" type="button">Switch to Story Mode</button>
 
 <script>
+    let storyMode = false;
+    
     fetch("data.json")
         .then(response => response.json())
         .then(data => {
@@ -149,40 +167,70 @@
             const title = document.querySelector("h1");
             const summary = document.querySelector("p");
 
-            let index = 0;
-            const lastIndex = Object.keys(data.title).length - 1;
+    function updateContent(index) {
+        img.src = data.image_path[index];
+        img.alt = data.title[index];
+        title.innerText = data.title[index];
+        summary.innerText = storyMode ? data.story[index] : data.summary[index];
+    }
+    // Add an event listener for the Story Mode button
+    document.querySelector("#story-mode").addEventListener("click", () => {
+    storyMode = !storyMode;
+    updateContent(index);
+    const storyModeButton = document.querySelector("#story-mode");
+    storyModeButton.style.backgroundColor = storyMode ? "#DB1F48" : "#333";
+    storyModeButton.textContent = storyMode ? "Reading in Story Mode" : "Switch to Story Mode";
+});
 
-            img.src = data.image_path[index];
-            console.log(data.image_path[index]);
-            img.alt = data.title[index];
-            title.innerText = data.title[index];
-            summary.innerText = data.summary[index];
 
-            document.querySelector("#prev-nav").addEventListener("click", () => {
-                if (index === 0) {
-                    index = lastIndex;
-                } else {
-                    index--;
-                }
-                img.src = data.image_path[index];
-                img.alt = data.title[index];
-                title.innerText = data.title[index];
-                summary.innerText = data.summary[index];
-            });
 
-            document.querySelector("#next-nav").addEventListener("click", () => {
-                if (index === lastIndex) {
-                    index = 0;
-                } else {
-                    index++;
-                }
-                img.src = data.image_path[index];
-                img.alt = data.title[index];
-                title.innerText = data.title[index];
-                summary.innerText = data.summary[index];
-            });
-        })
-        .catch(error => console.error(error));
+    let index = 0;
+    const lastIndex = Object.keys(data.title).length - 1;
+
+    updateContent(index);
+
+    const container = document.querySelector(".container");
+    const hammer = new Hammer(container);
+
+    hammer.on("swipeleft", () => {
+        // Navigate to the next page
+        if (index === lastIndex) {
+            index = 0;
+        } else {
+            index++;
+        }
+        updateContent(index);
+    });
+
+    hammer.on("swiperight", () => {
+        // Navigate to the previous page
+        if (index === 0) {
+            index = lastIndex;
+        } else {
+            index--;
+        }
+        updateContent(index);
+    });
+
+    document.querySelector("#prev-nav").addEventListener("click", () => {
+        if (index === 0) {
+            index = lastIndex;
+        } else {
+            index--;
+        }
+        updateContent(index);
+    });
+
+    document.querySelector("#next-nav").addEventListener("click", () => {
+        if (index === lastIndex) {
+            index = 0;
+        } else {
+            index++;
+        }
+        updateContent(index);
+    });
+})
+.catch(error => console.error(error));
 </script>
 </body>
 </html>
