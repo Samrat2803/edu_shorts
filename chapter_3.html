@@ -46,7 +46,7 @@
         }
         .container {
             max-width: 800px;
-            min-height: 80vh;
+            min-height: 70vh;
             margin-top: 10px;
             margin-left: auto;
             margin-right: auto;
@@ -128,6 +128,60 @@
             border-radius: 5px;
             cursor: pointer;
         }
+        #dates-container {
+            /* padding: 20px; */
+            text-align: left;
+            background-color: #ababab;
+        }
+        .content-footer-wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            justify-content: space-between;
+        }
+        #footer {
+            width: 100%;
+            max-width: 800px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            margin-top: 10px; /* Add margin-top to create spacing between .container and #footer */
+            margin-bottom: auto;
+            background-color: whitesmoke;
+            /* border: 0px solid #000; */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 15px;
+            max-width: 800px;
+            /* min-height: 70vh; */
+            margin-top: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            /* padding: 30px; */
+            /* border: 20px solid #000; */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* border-radius: 15px; */
+        }
+        footer-button {
+            width: 200px;
+            padding: 10px 0;
+            background-color: #5390A6;
+            color: #FFF;
+            font-size: 16px;
+            text-align: center;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        footer-button:hover {
+            background-color: #0056B3;
+        }
     </style>
 </head>
 <body>
@@ -146,7 +200,7 @@
     <div id="prev-nav" class="navbar"></div>
 <div id="next-nav" class="navbar"></div>
 </div>
-
+<div class="content-footer-wrapper">
 <div class="container">
     <div>
     <img src="" alt="Image" class="content-image">
@@ -155,9 +209,14 @@
     <h1></h1>
     <p></p>
     </div>
+    <div id="dates-container">Click on any of the Below for additional resource...</div>
+</div>
+    <div id="footer">
+    <footer-button id="fetchDates">Important Dates</footer-button>
+  </div>
 </div>
 <script>
-    let storyMode = false;
+    let storyMode = false;  
     
     fetch("data.json")
         .then(response => response.json())
@@ -179,7 +238,23 @@
     const storyModeButton = document.querySelector("#story-mode");
     storyModeButton.style.backgroundColor = storyMode ? "#DB1F48" : "#333";
     storyModeButton.textContent = storyMode ? "Reading in Story Mode" : "Switch to Story Mode";
-});
+    });
+
+    document.getElementById("fetchDates").addEventListener("click", function() {
+      fetch("data.json")
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("dates-container").innerHTML = `
+                <ul>
+                    ${data.dates[index].split('\n').map(date => `<li>${date.trim()}</li>`).join('')}
+                </ul>
+                `;
+
+        })
+        .catch(error => {
+          console.error("Error fetching data:", error);
+        });
+    });
 
 
 
