@@ -149,7 +149,7 @@
             align-items: center;
             padding: 15px;
             margin-top: 10px; /* Add margin-top to create spacing between .container and #footer */
-            margin-bottom: auto;
+            margin-bottom: 40px;
             background-color: whitesmoke;
             /* border: 0px solid #000; */
             flex-direction: column;
@@ -164,7 +164,7 @@
             /* padding: 30px; */
             /* border: 20px solid #000; */
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             justify-content: center;
             align-items: center;
             /* border-radius: 15px; */
@@ -172,16 +172,15 @@
         footer-button {
             width: 200px;
             padding: 10px 0;
+            margin-left: auto;
+            margin-right: auto;
             background-color: #5390A6;
             color: #FFF;
-            font-size: 16px;
+            font-size: 27px;
             text-align: center;
             border: none;
             border-radius: 4px;
             cursor: pointer;
-        }
-        footer-button:hover {
-            background-color: #0056B3;
         }
     </style>
 </head>
@@ -214,6 +213,10 @@
 </div>
     <div id="footer">
     <footer-button id="fetchDates">Important Dates</footer-button>
+    <footer-button id="fetchBullets">Bullets</footer-button>
+    <footer-button id="fetchQuiz">Quiz</footer-button>
+    <footer-button id="fetchFaq">FAQ</footer-button>
+
   </div>
 </div>
 <script>
@@ -233,6 +236,9 @@
         summary.innerText = storyMode ? data.story[index] : data.summary[index];
         document.getElementById("dates-container").innerText = "Click on any of the Below for additional resource...";
         document.getElementById("fetchDates").style.backgroundColor = "#5390A6";
+        document.getElementById("fetchBullets").style.backgroundColor = "#5390A6";
+        document.getElementById("fetchQuiz").style.backgroundColor = "#5390A6";
+        document.getElementById("fetchFaq").style.backgroundColor = "#5390A6";
     }
     // Add an event listener for the Story Mode button
     document.querySelector("#story-mode").addEventListener("click", () => {
@@ -244,7 +250,7 @@
     });
 
     document.getElementById("fetchDates").addEventListener("click", function() {
-      fetch("data.json")
+    fetch("data.json")
         .then(response => response.json())
         .then(data => {
             document.getElementById("dates-container").innerHTML = `
@@ -252,15 +258,50 @@
                     ${data.dates[index].split('\n').map(date => `<li>${date.trim()}</li>`).join('')}
                 </ul>
                 `;this.style.backgroundColor = 'red';
-
-        })
-        .catch(error => {
-          console.error("Error fetching data:", error);
         });
+    }); // Add closing brace here
+    document.getElementById("fetchBullets").addEventListener("click", function() {
+        fetch("data.json")
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("dates-container").innerHTML = `
+                    <ul>
+                        ${data.bullets[index].split('\n').map(bullet => `<li>${bullet.trim()}</li>`).join('')}
+                    </ul>
+                    `;this.style.backgroundColor = 'red';
+            })
+        .catch(error => {
+            console.error("Error fetching data:", error);
+        });
+});
+document.getElementById("fetchQuiz").addEventListener("click", function() {
+    fetch("data.json")
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("dates-container").innerHTML = `
+                <ul>
+                    ${data.quiz[index].split('\n').map(quiz => `<li>${quiz.trim()}</li>`).join('')}
+                </ul>
+                `;this.style.backgroundColor = 'red';
+        })
+    .catch(error => {
+        console.error("Error fetching data:", error);
     });
-
-
-
+});
+document.getElementById("fetchFaq").addEventListener("click", function() {
+    fetch("data.json")
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("dates-container").innerHTML = `
+                <ul>
+                    ${data.faq[index].split('\n').map(faq => `<li>${faq.trim()}</li>`).join('')}
+                </ul>
+                `;this.style.backgroundColor = 'red';
+        })
+    .catch(error => {
+        console.error("Error fetching data:", error);
+    });
+});
     let index = 0;
     const lastIndex = Object.keys(data.title).length - 1;
 
