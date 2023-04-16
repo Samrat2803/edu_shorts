@@ -260,7 +260,7 @@
         .then(data => {
             document.getElementById("dates-container").innerHTML = `
                 <ul>
-                    ${data.dates[index].split('\n').map(date => `<li>${date.trim()}</li>`).join('')}
+                    ${data.dates[index].split('\n').map(date => `${date.trim()}`).join('')}
                 </ul>
                 `;this.style.backgroundColor = 'red';
         });
@@ -271,7 +271,7 @@
             .then(data => {
                 document.getElementById("dates-container").innerHTML = `
                     <ul>
-                        ${data.bullets[index].split('\n').map(bullet => `<li>${bullet.trim()}</li>`).join('')}
+                        ${data.bullets[index].split('\n').map(bullet => `${bullet.trim()}`).join('')}
                     </ul>
                     `;this.style.backgroundColor = 'red';
             })
@@ -285,7 +285,7 @@ document.getElementById("fetchQuiz").addEventListener("click", function() {
         .then(data => {
             document.getElementById("dates-container").innerHTML = `
                 <ul>
-                    ${data.quiz[index].split('\n').map(quiz => `<li>${quiz.trim()}</li>`).join('')}
+                    ${data.quiz[index].split('\n').map(quiz => `${quiz.trim()}`).join('')}
                 </ul>
                 `;this.style.backgroundColor = 'red';
         })
@@ -299,7 +299,7 @@ document.getElementById("fetchFaq").addEventListener("click", function() {
         .then(data => {
             document.getElementById("dates-container").innerHTML = `
                 <ul>
-                    ${data.faq[index].split('\n').map(faq => `<li>${faq.trim()}</li>`).join('')}
+                    ${data.faq[index].split('\n').map(faq => `${faq.trim()}`).join('')}
                 </ul>
                 `;this.style.backgroundColor = 'red';
         })
@@ -313,7 +313,7 @@ document.getElementById("fetchReferenceText").addEventListener("click", function
         .then(data => {
             document.getElementById("dates-container").innerHTML = `
                 <ul>
-                    ${data.chunk[index].split('\n').map(ch => `<li>${ch.trim()}</li>`).join('')}
+                    ${data.chunk[index].split('\n').map(ch => `${ch.trim()}`).join('')}
                 </ul>
                 `;this.style.backgroundColor = 'red';
         })
@@ -327,7 +327,7 @@ document.getElementById("fetchSource").addEventListener("click", function() {
         .then(data => {
             document.getElementById("dates-container").innerHTML = `
                 <ul>
-                    ${data.source[index].split('\n').map(src => `<li>${src.trim()}</li>`).join('')}
+                    ${data.source[index].split('\n').map(src => `${src.trim()}`).join('')}
                 </ul>
                 `;this.style.backgroundColor = 'red';
         })
