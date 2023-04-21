@@ -217,7 +217,7 @@
     <p></p>
     </div>
     <div id="additional-information-container"></div>
-    <div id="footer-buttons-click-prompt">Click on any of the Below for additional resource...</div>
+    <div id="footer-buttons-click-prompt">Click on any of the Below for additional resources...</div>
 </div>
     <div id="footer">
     <footer-button id="fetchDates">Important Dates</footer-button>
@@ -251,7 +251,6 @@
                 ${data.bullets[index].split('\n').map(bullet => `${bullet.trim()}`).join('')}
             </ul>
             `;
-        // document.getElementById("additional-information-container").innerText = "Click on any of the Below for additional resource...";
         document.getElementById("fetchDates").style.backgroundColor = "#5390A6";
         document.getElementById("fetchBullets").style.backgroundColor = "#5390A6";
         document.getElementById("fetchQuiz").style.backgroundColor = "#5390A6";
@@ -354,8 +353,9 @@ document.getElementById("fetchSource").addEventListener("click", function() {
 
     updateContent(index);
 
-    const container = document.querySelector(".container");
-    const hammer = new Hammer(container);
+    const body = document.querySelector("body");
+    const hammer = new Hammer(body);
+
 
     hammer.on("swipeleft", () => {
         // Navigate to the next page
@@ -365,6 +365,7 @@ document.getElementById("fetchSource").addEventListener("click", function() {
             index++;
         }
         updateContent(index);
+        window.scrollTo(0, 0);
     });
 
     hammer.on("swiperight", () => {
@@ -375,6 +376,7 @@ document.getElementById("fetchSource").addEventListener("click", function() {
             index--;
         }
         updateContent(index);
+        window.scrollTo(0, 0);
     });
 
     document.querySelector("#prev-nav").addEventListener("click", () => {
@@ -384,6 +386,7 @@ document.getElementById("fetchSource").addEventListener("click", function() {
             index--;
         }
         updateContent(index);
+        window.scrollTo(0, 0);
     });
 
     document.querySelector("#next-nav").addEventListener("click", () => {
@@ -393,6 +396,7 @@ document.getElementById("fetchSource").addEventListener("click", function() {
             index++;
         }
         updateContent(index);
+        window.scrollTo(0, 0);
     });
 })
 .catch(error => console.error(error));
