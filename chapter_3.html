@@ -128,11 +128,18 @@
             border-radius: 5px;
             cursor: pointer;
         }
-        #dates-container {
+        #additional-information-container {
             /* padding: 20px; */
             width: 95%;
             text-align: left;
             background-color: #ababab;
+        }
+        #footer-buttons-click-prompt {
+            /* padding: 20px; */
+            width: 100%;
+            text-align: center;
+            margin-top: 10px;
+            background-color: white;
         }
         .content-footer-wrapper {
             display: flex;
@@ -209,7 +216,8 @@
     <h1></h1>
     <p></p>
     </div>
-    <div id="dates-container">Click on any of the Below for additional resource...</div>
+    <div id="additional-information-container"></div>
+    <div id="footer-buttons-click-prompt">Click on any of the Below for additional resource...</div>
 </div>
     <div id="footer">
     <footer-button id="fetchDates">Important Dates</footer-button>
@@ -231,13 +239,19 @@
             const img = document.querySelector(".content-image");
             const title = document.querySelector("h1");
             const summary = document.querySelector("p");
+            // const bullets = document.querySelector("additional-information-container");
 
     function updateContent(index) {
         img.src = data.image_path[index];
         img.alt = data.title[index];
         title.innerText = data.title[index];
         summary.innerText = storyMode ? data.story[index] : data.summary[index];
-        document.getElementById("dates-container").innerText = "Click on any of the Below for additional resource...";
+        document.getElementById("additional-information-container").innerHTML = `
+            <ul>
+                ${data.bullets[index].split('\n').map(bullet => `${bullet.trim()}`).join('')}
+            </ul>
+            `;
+        // document.getElementById("additional-information-container").innerText = "Click on any of the Below for additional resource...";
         document.getElementById("fetchDates").style.backgroundColor = "#5390A6";
         document.getElementById("fetchBullets").style.backgroundColor = "#5390A6";
         document.getElementById("fetchQuiz").style.backgroundColor = "#5390A6";
@@ -258,7 +272,7 @@
     fetch("data.json")
         .then(response => response.json())
         .then(data => {
-            document.getElementById("dates-container").innerHTML = `
+            document.getElementById("additional-information-container").innerHTML = `
                 <ul>
                     ${data.dates[index].split('\n').map(date => `${date.trim()}`).join('')}
                 </ul>
@@ -269,7 +283,7 @@
         fetch("data.json")
             .then(response => response.json())
             .then(data => {
-                document.getElementById("dates-container").innerHTML = `
+                document.getElementById("additional-information-container").innerHTML = `
                     <ul>
                         ${data.bullets[index].split('\n').map(bullet => `${bullet.trim()}`).join('')}
                     </ul>
@@ -283,7 +297,7 @@ document.getElementById("fetchQuiz").addEventListener("click", function() {
     fetch("data.json")
         .then(response => response.json())
         .then(data => {
-            document.getElementById("dates-container").innerHTML = `
+            document.getElementById("additional-information-container").innerHTML = `
                 <ul>
                     ${data.quiz[index].split('\n').map(quiz => `${quiz.trim()}`).join('')}
                 </ul>
@@ -297,7 +311,7 @@ document.getElementById("fetchFaq").addEventListener("click", function() {
     fetch("data.json")
         .then(response => response.json())
         .then(data => {
-            document.getElementById("dates-container").innerHTML = `
+            document.getElementById("additional-information-container").innerHTML = `
                 <ul>
                     ${data.faq[index].split('\n').map(faq => `${faq.trim()}`).join('')}
                 </ul>
@@ -311,7 +325,7 @@ document.getElementById("fetchReferenceText").addEventListener("click", function
     fetch("data.json")
         .then(response => response.json())
         .then(data => {
-            document.getElementById("dates-container").innerHTML = `
+            document.getElementById("additional-information-container").innerHTML = `
                 <ul>
                     ${data.chunk[index].split('\n').map(ch => `${ch.trim()}`).join('')}
                 </ul>
@@ -325,7 +339,7 @@ document.getElementById("fetchSource").addEventListener("click", function() {
     fetch("data.json")
         .then(response => response.json())
         .then(data => {
-            document.getElementById("dates-container").innerHTML = `
+            document.getElementById("additional-information-container").innerHTML = `
                 <ul>
                     ${data.source[index].split('\n').map(src => `${src.trim()}`).join('')}
                 </ul>
