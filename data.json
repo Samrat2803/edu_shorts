@@ -178,5 +178,17 @@
     "7": "<li>Who were the Portuguese enemies?</li>\n<li>Why did the Portuguese want to find a new sea-route to India?</li>\n<li>Who was Prester John and why did the Portuguese want to find him?</li>",
     "8": "<li>What was the reason behind the Portuguese's search for a new sea-route to India?</li>\n<li>What were the names of the trading factories set up by the Portuguese in India?</li>\n<li>Who was appointed as the governor by the Portuguese and what were his instructions?</li>",
     "9": "<li>Who was Francisco De Almeida?</li>\n<li>What was Francisco De Almeida tasked with?</li>\n<li>Who succeeded Francisco De Almeida?</li>"
+  },
+  "image_path": {
+    "0": "images/page_0.jpg",
+    "1": "images/page_1.jpg",
+    "2": "images/page_2.jpg",
+    "3": "images/page_3.jpg",
+    "4": "images/page_4.jpg",
+    "5": "images/page_5.jpg",
+    "6": "images/page_6.jpg",
+    "7": "images/page_7.jpg",
+    "8": "images/page_8.jpg",
+    "9": "images/page_9.jpg"
   }
 }
