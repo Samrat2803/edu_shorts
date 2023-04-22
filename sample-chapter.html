@@ -28,7 +28,17 @@
             /* border: 1px solid #ccc; */
             /* other styles here */
         }
-
+        .page-number-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            background-color: white;
+            padding-left: 40px;
+            padding-right: 40px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            font-size: x-large;
+        }
         .title {
             text-align: center;
             width: 80%; /* increase the width to 80% */
@@ -204,7 +214,11 @@
     </div>
 </div>
 <button id="story-mode" type="button">Switch to Story Mode</button>
-      
+<div class="page-number-container">
+    <label for="page-number-input">Page Number: </label>
+    <input type="number" id="page-number-input" min="0" value="0">
+    <span id="max-index"></span>
+</div>
 <div class="navbar-container">
     <div id="prev-nav" class="navbar"></div>
 <div id="next-nav" class="navbar"></div>
@@ -241,7 +255,6 @@
             const img = document.querySelector(".content-image");
             const title = document.querySelector("h1");
             const summary = document.querySelector("p");
-            // const bullets = document.querySelector("additional-information-container");
 
     function updateContent(index) {
         img.src = data.image_path[index];
@@ -259,6 +272,7 @@
         document.getElementById("fetchFaq").style.backgroundColor = "#5390A6";
         document.getElementById("fetchReferenceText").style.backgroundColor = "#5390A6";
         document.getElementById("fetchSource").style.backgroundColor = "#5390A6";
+        pageNumberInput.value = index;
     }
     // Add an event listener for the Story Mode button
     document.querySelector("#story-mode").addEventListener("click", () => {
@@ -322,6 +336,18 @@ document.getElementById("fetchFaq").addEventListener("click", function() {
         console.error("Error fetching data:", error);
     });
 });
+const pageNumberInput = document.getElementById("page-number-input");
+pageNumberInput.addEventListener("change", () => {
+    const newPageIndex = parseInt(pageNumberInput.value, 10);
+    if (newPageIndex >= 0 && newPageIndex <= lastIndex) {
+        index = newPageIndex;
+        updateContent(index);
+        window.scrollTo(0, 0);
+    } else {
+        alert("Page number is out of range.");
+    }
+});
+
 document.getElementById("fetchReferenceText").addEventListener("click", function() {
     fetch("data.json")
         .then(response => response.json())
@@ -352,6 +378,7 @@ document.getElementById("fetchSource").addEventListener("click", function() {
 });
     let index = 0;
     const lastIndex = Object.keys(data.title).length - 1;
+    document.getElementById("max-index").innerText = ` / ${lastIndex}`;
 
     updateContent(index);
 
