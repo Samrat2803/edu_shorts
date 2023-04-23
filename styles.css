@@ -6,22 +6,13 @@ header {
   margin-bottom: 2rem;
 }
 
-main {
-  min-height: calc(100vh - 250px);
-}
-
-footer {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-}
-
 .border-wrapper {
   border: 10px solid #5390A6;
   box-sizing: border-box;
   height: 100%;
   width: 100%;
   position: absolute;
+  padding: 1rem; /* Add padding inside the border-wrapper */
 }
 
 .custom-btn {
